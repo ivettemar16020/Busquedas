@@ -16,7 +16,6 @@ def graph_search(problem):
     state = problem.initial
     path.append(state)
     frontier.append(path)
-    #new state
 
     while(1):
         if len(frontier):
@@ -25,6 +24,7 @@ def graph_search(problem):
             state = path[len(path)-1]
             explored.append(state)
             frontier.remove(path)
+            #new state
 
             #Test
             if problem.goal_test(state):

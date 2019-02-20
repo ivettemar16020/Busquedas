@@ -5,30 +5,66 @@
     Style: PEP8  -   https://www.python.org/dev/peps/pep-0008/
 """
 
+import copy
+import fw 
 import numpy as np
 
-blank = 0
-space = " "
-line = "|"
-row = "-------------------------------------"
+BLANK = 0
+SPACE = " "
+LINE = "|"
+ROW = "-------------------------------------"
+NUMBERS = ["1", "2", "3", "4"]
 
-dim = int(input("¿Dimensiones del sudoku? "))
-#Inicializar matriz de dimxdim con ceros
-mat = np.zeros ((dim,dim))
+class Start: 
+    def entry(self):
+        while True:
+            temp = input("Sudoku(input) ")
+            if (len(temp) != 16):
+                print('Sudoku must be 4x4 (16 char) \nTry again :) \n')
+            else: 
+                sudo = self.sudoku_matrix(temp)
+                print("Initial state: \n", sudo)
+                break
 
-problem = input("Ingrese el sudoku que desea resolver: ")
+    def sudoku_matrix(self, input): 
+        row = []
+        sudoku = []
+        n = 0
+        for i in input: 
+            row.append(i)
+            n += 1 
+            if (n%4 == 0):
+                sudoku.append(row)
+                row = [] #clean row
+        return sudoku
 
-#Llenando matriz 
-for i in range(dim): 
-    if(problem[i] == "."):
-        mat[i] = 0
-    else: 
-        mat[i] = (int)(problem[i])
+class Sudoku: 
 
-print(mat)
+    initial = "Initial state"
 
-"""
-def show_grid(int grid[dim][dim]):
-    for i in range(0,dim):
-        print(blank)
-"""
+    def actions(self, matrix): 
+        #rules 
+        pass
+    
+    def result(self):
+        pass
+
+    def goal_test(self, matrix): 
+        #revisar que en cada fila, columna y cuadro 
+        #se tengan los números 1, 2, 3, 4 
+        pass
+
+    def stepCost(self):
+        pass
+
+    
+    def pathCost(self):
+        pass
+
+
+    def process(self):
+        print("Enter the start state matrix \n")
+        
+        
+sudok = Start()
+sudok.entry()

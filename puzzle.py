@@ -6,6 +6,7 @@
 """
 
 import ast
+import fw
 import math
 import numpy as np 
 
@@ -39,7 +40,7 @@ class Puzzle:
         self.closed = []
 
     def entry(self):
-        """ Entrada de usuario """
+        """ User entry"""
         puz: []
         temp = input()
         puz = list(temp)
@@ -47,8 +48,11 @@ class Puzzle:
         print(puz) 
         return puz
 
+    def heuristic(self, start, goal):
+        
+
     def process(self):
-        print("Entre el 15p a resolver: \n")
+        print("Enter 15Puzzle: \n")
         start = self.entry()
 
 fifteen = Puzzle()
