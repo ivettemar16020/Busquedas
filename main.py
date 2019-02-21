@@ -6,7 +6,7 @@
 """
 
 import sudoku as sudo 
-import puzzle as puz
+#import puzzle as puz
 
 def main(): 
     print("Graph-Search ~ Problem solver")
@@ -18,8 +18,9 @@ def main():
                 sudoku = sudo.Start()
                 sudoku.entry()
             if(choice == "p"):
-                fifteen = puz.Start()
-                fifteen.entry()
+                print("no")
+                #fifteen = puz.Start()
+                #fifteen.entry()
             if(choice == "q"): 
                 print("Bye bye")
                 break

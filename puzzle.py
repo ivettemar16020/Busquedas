@@ -41,7 +41,7 @@ class Start:
             if (response == False):
                 print(response)
             break
-
+"""
     def create_matrix(self, dim, arr):
         matrix = np.zeros((dim,dim))
         arrval = 0
@@ -52,7 +52,7 @@ class Start:
         return matrix
 
     def blanknode(self, matrix, n, val):
-        n = Node(0,0)
+        n = Node()
         for x in range(n):
             for y in range (n):
                 value = matrix[x,y]
@@ -63,11 +63,12 @@ class Node():
     def __init__(self,x,y):
         self.x = x
         self.y = y
-
+"""
 class Puzzle: 
     init = "Initial state"
 
     start = Start()
+"""
     n = Node(0,0)
 
     def newFrontier(self, s,a):   
@@ -94,4 +95,4 @@ class Puzzle:
         return matrix
 
     def process(self): 
-        pass
+        pass"""
