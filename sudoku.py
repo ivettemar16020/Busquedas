@@ -17,7 +17,7 @@ DIM = 4
 
 class Start: 
     def entry(self):
-        "User entry"
+        """ User entry """
         while True:
             temp = input("Sudoku(input) ")
             if (len(temp) != 16):
@@ -59,8 +59,8 @@ class Sudoku:
 
     init = "Initial state"
 
-    def actions(self, matrix): 
-        "Define actions"
+    def result(self, matrix): 
+        "Define actions and return the result"
         empty = 0
         n = 0
         m = 0

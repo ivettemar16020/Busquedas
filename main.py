@@ -18,8 +18,8 @@ def main():
                 sudoku = sudo.Start()
                 sudoku.entry()
             if(choice == "p"):
-                fifteen = puz.Puzzle()
-                fifteen.process()
+                fifteen = puz.Start()
+                fifteen.entry()
             if(choice == "q"): 
                 print("Bye bye")
                 break

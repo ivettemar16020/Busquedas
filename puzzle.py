@@ -14,47 +14,48 @@ GOAL = [
     '1','2','3','4',
     '5','6','7','8',
     '9','10','11','12',
-    '13','14','15','_'
+    '13','14','15','.'
 ]
 
-class Node:
-    def __init__(self,data,level,fval):
-        self.data = data
-        self.level = level
-        self.fval = fval
-
-    def movement(self, puzzle, x1, x2, y1, y2): 
-        if x2 >= 0 and x2 < len(self.data) and y2 >= 0 and y2 < len(self.data):
-            temp_puz = []
-            temp_puz = puzzle.copy()
-            temp = temp_puz[x2][y2]
-            temp_puz[x2][y2] = temp_puz[x1][y1]
-            temp_puz[x1][y1] = temp
-            return temp_puz
-        else:
-            return None
-
-class Puzzle: 
-    def __init__(self):
-        self.open = []
-        self.closed = []
-
+class Start:
     def entry(self):
         """ User entry"""
         puz = []
-        temp = input("Enter 15Puzzle in Hexadecimal Format: ")
-        if (len(temp) != 15): 
-            print("Lenght must be 15 :(")
-            return -1
-        for i in range(len(temp) ):
-            temp_dec = int(temp[i], 16)
-            puz.append(str(temp_dec))
-        print(puz) 
-        return puz
+        while True:
+            temp = input("Enter 15Puzzle in Hexadecimal Format: ")
+            if (len(temp) != 16): 
+                print("Length must be 16 :(")
+                return -1
+            for i in temp:
+                if (i == "."): 
+                    puz.append("0")
+                else: 
+                    temp_dec = int(i, 16)
+                    puz.append(str(temp_dec))
+            print(puz)
+            #problem = Puzzle()
+            #problem.init = puz
 
-    def heuristic(self, start, goal):
+            #response = fw.graph_search(problem)
+
+            #if (response == False):
+                #print(response)
+            break
+
+class Puzzle: 
+    init = "Initial state"
+
+    def goal_test(self, dim): 
+        matrix = np.zeros((dim,dim))
+        arrval = 1
+        for x in range(dim):
+            for y in range (dim):
+                if(y == dim-1 and x == dim-1):
+                    matrix[x,y] = 0
+                else:
+                    matrix[x,y] = arrval
+                    arrval = arrval +1
+        return matrix
+
+    def process(self): 
         pass
-
-    def process(self):
-        print("Enter 15Puzzle: \n")
-        start = self.entry()
