@@ -39,8 +39,9 @@ def graph_search(problem):
                     new_path.append(i)
                     frontier.append(new_path)
 
-        else: 
-            return False
+        else:
+            nop = print("Unsolved :(")
+            return nop
 
 def print_state(matrix):
         print("  | ")

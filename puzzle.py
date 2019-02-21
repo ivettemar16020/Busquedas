@@ -58,6 +58,3 @@ class Puzzle:
     def process(self):
         print("Enter 15Puzzle: \n")
         start = self.entry()
-
-fifteen = Puzzle()
-fifteen.process()

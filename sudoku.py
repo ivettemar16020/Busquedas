@@ -17,6 +17,7 @@ DIM = 4
 
 class Start: 
     def entry(self):
+        "User entry"
         while True:
             temp = input("Sudoku(input) ")
             if (len(temp) != 16):
@@ -36,6 +37,7 @@ class Start:
                 break
 
     def sudoku_matrix(self, input): 
+        "Convert entry to matrix"
         row = []
         sudoku = []
         n = 0
@@ -48,6 +50,7 @@ class Start:
         return sudoku
     
     def grid(self, matrix):
+        "Print matrix element by element"
         print('\n'.join([''.join(['{:4}'.format(item) 
             for item in row]) for row in matrix]))
         print("_______________\n")
@@ -57,6 +60,7 @@ class Sudoku:
     init = "Initial state"
 
     def actions(self, matrix): 
+        "Define actions"
         empty = 0
         n = 0
         m = 0
@@ -93,6 +97,7 @@ class Sudoku:
         return poss_matrix 
 
     def goal_test(self, matrix): 
+        "Define goal test"
         #[1, 2, 3, 4] appear exactly once in each row, column and box
 
         #row
@@ -167,8 +172,3 @@ class Sudoku:
                 total_cost = cost
 
         return best_path
-        
-        
-sudok = Start()
-sudok.entry()
-
