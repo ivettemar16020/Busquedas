@@ -13,7 +13,7 @@ def graph_search(problem):
     explored = []
     path = [] #Result from A*
     
-    state = problem.initial
+    state = problem.init
     path.append(state)
     frontier.append(path)
 
@@ -25,6 +25,7 @@ def graph_search(problem):
             explored.append(state)
             frontier.remove(path)
             #new state
+            print_state(state)
 
             #Test
             if problem.goal_test(state):
@@ -40,3 +41,8 @@ def graph_search(problem):
 
         else: 
             return False
+
+def print_state(matrix):
+        print('\n'.join([''.join(['{:4}'.format(item) 
+            for item in row]) for row in matrix]))
+        print("_______________")

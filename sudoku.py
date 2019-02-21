@@ -25,8 +25,18 @@ class Start:
             else: 
                 sudo = self.sudoku_matrix(temp)
                 problem = Sudoku()
-                problem.goal_test(sudo)
+                problem.init = sudo
+                print("Initial state: \n")
                 self.grid(sudo)
+
+                response = fw.graph_search(problem)
+
+                if (response == False):
+                    print(response)
+                else: 
+                    for i in response: 
+                        self.grid(i)
+
                 break
 
     def sudoku_matrix(self, input): 
@@ -42,14 +52,13 @@ class Start:
         return sudoku
     
     def grid(self, matrix):
-        print("Initial state: \n")
         print('\n'.join([''.join(['{:4}'.format(item) 
             for item in row]) for row in matrix]))
         print("_______________")
 
 class Sudoku: 
 
-    initial = "Initial state"
+    init = "Initial state"
 
     def actions(self, matrix): 
         empty = 0
@@ -123,14 +132,14 @@ class Sudoku:
         while (i < DIM): 
             if(i==1):
                 a = 2
-            else if (i==2): 
+            elif (i==2): 
                 a = 0
                 b = 2
-            else if (i==3):
+            elif (i==3):
                 a = 2
                 b = 2
             for x in range(DIM/2): 
-                for y in range(DIM/2)
+                for y in range(DIM/2):
                     if (matrix[x+b][y+a] in goal): 
                         goal.remove(matrix[x+b][y+a])
             if(len(goal) != 0): 
@@ -141,12 +150,32 @@ class Sudoku:
     def process(self, available_path):
         "Define costs and heuristic"
         best_path = 0
-        cost = 0
+        total_cost = 0
         for n in available_path: 
             state = n[len(n) -1 ]
             cost = 0
 
-            #heuristic? 
+            #Put
+            for h in range(DIM): 
+                cont = 0
+                for y in range(DIM): 
+                    if state[h][y] != ".": 
+                        cont += 1
+                cost += cont * cont
+
+            #Out
+            for h in range(DIM): 
+                cont = 0
+                for y in range(DIM): 
+                    if state[y][h] != ".": 
+                        cont += 1
+                cost += cont * cont
+
+            #Total
+            if cost > total_cost: 
+                best_path = n
+                total_cost = cost
+
         return best_path
         
         
