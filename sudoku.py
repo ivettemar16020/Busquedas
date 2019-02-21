@@ -59,7 +59,7 @@ class Sudoku:
 
     init = "Initial state"
 
-    def result(self, matrix): 
+    def actions(self, matrix): 
         "Define actions and return the result"
         empty = 0
         n = 0
