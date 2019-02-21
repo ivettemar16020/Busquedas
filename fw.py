@@ -43,6 +43,11 @@ def graph_search(problem):
             return False
 
 def print_state(matrix):
+        print("  | ")
+        print("  | ")
+        print(" \|/ ")
+        print("  ' \n")
+        print("______________\n")
         print('\n'.join([''.join(['{:4}'.format(item) 
             for item in row]) for row in matrix]))
-        print("_______________")
+        print("______________\n")

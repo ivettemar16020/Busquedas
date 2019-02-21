@@ -7,7 +7,6 @@
 
 import copy
 import fw 
-import numpy as np
 
 BLANK = 0
 SPACE = " "
@@ -33,9 +32,6 @@ class Start:
 
                 if (response == False):
                     print(response)
-                else: 
-                    for i in response: 
-                        self.grid(i)
 
                 break
 
@@ -54,7 +50,7 @@ class Start:
     def grid(self, matrix):
         print('\n'.join([''.join(['{:4}'.format(item) 
             for item in row]) for row in matrix]))
-        print("_______________")
+        print("_______________\n")
 
 class Sudoku: 
 
@@ -68,17 +64,16 @@ class Sudoku:
         possibility = []
         poss_matrix = []
 
-        #Count of empty spaces
         for x in range(DIM):
             for y in range(DIM): 
                 if matrix[x][y] == ".": 
                     position.append(tuple([x,y]))
                     empty += 1
 
-        num = NUMBERS
         while(n < empty): 
+            num = ["1", "2", "3", "4"]
             for i in range(DIM): 
-                if ((matrix[position[n][0]][i] != ".") and (matrix[position[n][0]][i] in num)): 
+                if (matrix[position[n][0]][i] != "."): 
                     num.remove(matrix[position[n][0]][i])
                     
             for i in range(DIM):
@@ -97,31 +92,26 @@ class Sudoku:
 
         return poss_matrix 
 
-    
-    def result(self):
-        #(state + action) -> state'  
-        pass
-
     def goal_test(self, matrix): 
         #[1, 2, 3, 4] appear exactly once in each row, column and box
 
         #row
         for x in range(DIM): 
-            goal = NUMBERS
+            goal = ["1", "2", "3", "4"]
             for y in range(4): 
                 if (matrix[x][y] in goal): 
                     goal.remove(matrix[x][y])
-                if (len(goal) > 0): 
-                    return False
+            if (len(goal) > 0): 
+                return False
 
         #column
         for x in range(DIM): 
-            goal = NUMBERS
+            goal = ["1", "2", "3", "4"]
             for y in range(4): 
                 if (matrix[y][x] in goal): 
                     goal.remove(matrix[y][x])
-                if (len(goal) > 0): 
-                    return False
+            if (len(goal) > 0): 
+                return False
 
         #box
         #box1.append(matrix[0], matrix[1], matrix[4], matrix[5])
@@ -138,14 +128,14 @@ class Sudoku:
             elif (i==3):
                 a = 2
                 b = 2
-            for x in range(DIM/2): 
-                for y in range(DIM/2):
+            for x in range(2): 
+                for y in range(2):
                     if (matrix[x+b][y+a] in goal): 
                         goal.remove(matrix[x+b][y+a])
             if(len(goal) != 0): 
                 return False
         
-        return True
+            return True
 
     def process(self, available_path):
         "Define costs and heuristic"
@@ -155,7 +145,7 @@ class Sudoku:
             state = n[len(n) -1 ]
             cost = 0
 
-            #Put
+            #Put 
             for h in range(DIM): 
                 cont = 0
                 for y in range(DIM): 
@@ -163,7 +153,7 @@ class Sudoku:
                         cont += 1
                 cost += cont * cont
 
-            #Out
+            #Remove 
             for h in range(DIM): 
                 cont = 0
                 for y in range(DIM): 
