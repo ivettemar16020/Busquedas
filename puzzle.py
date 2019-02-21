@@ -13,8 +13,8 @@ import numpy as np
 GOAL = [
     '1','2','3','4',
     '5','6','7','8',
-    '9','A','B','C',
-    'D','E','F','_'
+    '9','10','11','12',
+    '13','14','15','_'
 ]
 
 class Node:
@@ -41,15 +41,19 @@ class Puzzle:
 
     def entry(self):
         """ User entry"""
-        puz: []
-        temp = input()
-        puz = list(temp)
-
+        puz = []
+        temp = input("Enter 15Puzzle in Hexadecimal Format: ")
+        if (len(temp) != 15): 
+            print("Lenght must be 15 :(")
+            return -1
+        for i in range(len(temp) ):
+            temp_dec = int(temp[i], 16)
+            puz.append(str(temp_dec))
         print(puz) 
         return puz
 
     def heuristic(self, start, goal):
-        
+        pass
 
     def process(self):
         print("Enter 15Puzzle: \n")

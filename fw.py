@@ -11,7 +11,7 @@ import copy
 def graph_search(problem):
     frontier = []
     explored = []
-    path = []
+    path = [] #Result from A*
     
     state = problem.initial
     path.append(state)
@@ -20,7 +20,7 @@ def graph_search(problem):
     while(1):
         if len(frontier):
             #Election
-            path = problem.criteria(frontier)
+            path = problem.process(frontier)
             state = path[len(path)-1]
             explored.append(state)
             frontier.remove(path)

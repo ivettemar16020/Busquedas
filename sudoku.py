@@ -24,7 +24,9 @@ class Start:
                 print('Sudoku must be 4x4 (16 char) \nTry again :) \n')
             else: 
                 sudo = self.sudoku_matrix(temp)
-                print("Initial state: \n", sudo)
+                problem = Sudoku()
+                problem.goal_test(sudo)
+                self.grid(sudo)
                 break
 
     def sudoku_matrix(self, input): 
@@ -40,7 +42,10 @@ class Start:
         return sudoku
     
     def grid(self, matrix):
-        pass
+        print("Initial state: \n")
+        print('\n'.join([''.join(['{:4}'.format(item) 
+            for item in row]) for row in matrix]))
+        print("_______________")
 
 class Sudoku: 
 
@@ -85,24 +90,66 @@ class Sudoku:
 
     
     def result(self):
+        #(state + action) -> state'  
         pass
 
     def goal_test(self, matrix): 
-        #revisar que en cada fila, columna y cuadro 
-        #se tengan los números 1, 2, 3, 4 
-        pass
+        #[1, 2, 3, 4] appear exactly once in each row, column and box
 
-    def stepCost(self):
-        pass
+        #row
+        for x in range(DIM): 
+            goal = NUMBERS
+            for y in range(4): 
+                if (matrix[x][y] in goal): 
+                    goal.remove(matrix[x][y])
+                if (len(goal) > 0): 
+                    return False
 
-    
-    def pathCost(self):
-        pass
+        #column
+        for x in range(DIM): 
+            goal = NUMBERS
+            for y in range(4): 
+                if (matrix[y][x] in goal): 
+                    goal.remove(matrix[y][x])
+                if (len(goal) > 0): 
+                    return False
 
+        #box
+        #box1.append(matrix[0], matrix[1], matrix[4], matrix[5])
+        #box2.append(matrix[2], matrix[3], matrix[6], matrix[7])
+        #box3.append(matrix[8], matrix[9], matrix[12], matrix[13])
+        #box4.append(matrix[10], matrix[11], matrix[14], matrix[15])
+        a, b, c, i= (0,)*4
+        while (i < DIM): 
+            if(i==1):
+                a = 2
+            else if (i==2): 
+                a = 0
+                b = 2
+            else if (i==3):
+                a = 2
+                b = 2
+            for x in range(DIM/2): 
+                for y in range(DIM/2)
+                    if (matrix[x+b][y+a] in goal): 
+                        goal.remove(matrix[x+b][y+a])
+            if(len(goal) != 0): 
+                return False
+        
+        return True
 
-    def process(self):
-        print("Enter the start state matrix \n")
+    def process(self, available_path):
+        "Define costs and heuristic"
+        best_path = 0
+        cost = 0
+        for n in available_path: 
+            state = n[len(n) -1 ]
+            cost = 0
+
+            #heuristic? 
+        return best_path
         
         
 sudok = Start()
 sudok.entry()
+
